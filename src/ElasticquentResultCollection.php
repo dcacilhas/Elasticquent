@@ -143,7 +143,7 @@ class ElasticquentResultCollection extends \Illuminate\Database\Eloquent\Collect
         $page = Paginator::resolveCurrentPage() ?: 1;
         $sliced_items = array_slice($this->items, ($page - 1) * $pageLimit, $pageLimit);
 
-        return new Paginator($sliced_items, $this->hits, $this->totalHits(), $pageLimit, $page, ['path' => Paginator::resolveCurrentPath()]);
+        return new Paginator($sliced_items, $this->hits, count($this->hits['hits']), $pageLimit, $page, ['path' => Paginator::resolveCurrentPath()]);
     }
 
     /**
